@@ -77,17 +77,18 @@ def move_multiple_at_time(commands, stacks):
 def main():
     with open('input.txt') as f:
         lines = f.readlines()
-        state, commands = get_state_and_commands(lines)
+    
+    state, commands = get_state_and_commands(lines)
 
-        stacks = inizialize_staks(state)
-        commands = parse_commands(commands)
+    stacks = inizialize_staks(state)
+    commands = parse_commands(commands)
 
-        # print(*commands, sep="\n")
+    # print(*commands, sep="\n")
 
-        # for i,stack in enumerate(stacks):
-        #     print(f"Stack {i+1}: {stack.queue}")
+    # for i,stack in enumerate(stacks):
+    #     print(f"Stack {i+1}: {stack.queue}")
 
-        print(f"Puzzle 2: {move_multiple_at_time(commands, stacks)}")
+    print(f"Puzzle 2: {move_multiple_at_time(commands, stacks)}")
 
 if __name__ == "__main__":
     main()

@@ -35,19 +35,6 @@ def contains_directory(graph, node):
     return any(map(lambda x: graph[x]["is_dir"], graph[node]["contains"]))
 
 def find_smallest_to_free_enough_space(graph, node, current_free_space, required_free_space):
-    # if not contains_directory(graph, node):
-    #     result = node if current_free_space + graph[node]["size"] >= required_free_space else None
-    #     return result
-
-    # candidates = list(filter(lambda x: graph[x]["is_dir"] and current_free_space + graph[x]["size"] >= required_free_space, graph[node]["contains"]))
-    # if len(candidates) == 0:
-    #     return None
-
-    # best_candidate = next(filter(lambda x: graph[x]["size"] == min(map(lambda y: graph[y]["size"], candidates)), candidates))
-
-    # deeper_result = find_smallest_to_free_enough_space(graph, best_candidate, current_free_space, required_free_space)
-    # return deeper_result if deeper_result is not None else best_candidate
-
     stack = LifoQueue()
     queue = Queue()
     queue.put(node)

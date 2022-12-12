@@ -22,25 +22,8 @@ class Rope:
 
 
     def update_tail(self, H, T):
-        # if head and tail are on the same row and 
-        if self.knots[H][0] == self.knots[T][0]:
-            distance = self.knots[H][1] - self.knots[T][1]
-            if abs(distance) > 1:
-                self.knots[T] = (self.knots[T][0], self.knots[T][1] + np.sign(distance))
-
-        # if head and tail are on the same column
-        elif self.knots[H][1] == self.knots[T][1]:
-            distance = self.knots[H][0] - self.knots[T][0]
-            if abs(distance) > 1:
-                self.knots[T] = (self.knots[T][0] + np.sign(distance), self.knots[T][1])
-
-        # if head and tail are on different rows or columns
-        else:
-            # print("Diagonal")
-            # print("H", self.H)
-            # print("T", self.T)
-            if abs(self.knots[H][0] - self.knots[T][0]) > 1 or abs(self.knots[H][1] - self.knots[T][1]) > 1:
-                self.knots[T] = (self.knots[T][0] + np.sign(self.knots[H][0] - self.knots[T][0]), self.knots[T][1] + np.sign(self.knots[H][1] - self.knots[T][1]))
+        if abs(self.knots[H][0] - self.knots[T][0]) > 1 or abs(self.knots[H][1] - self.knots[T][1]) > 1:
+            self.knots[T] = (self.knots[T][0] + np.sign(self.knots[H][0] - self.knots[T][0]), self.knots[T][1] + np.sign(self.knots[H][1] - self.knots[T][1]))
 
     def move_head(self, direction, head=0):
         H = self.knots[head]
@@ -96,9 +79,9 @@ if __name__ == "__main__":
     print("Visited", board.get_number_of_visited())
     print("=== PART 2 ===")
 
-    big_rope = Rope(30,30, knots=10, start=(5,11))
+    big_rope = Rope(26,21, knots=10, start=(5,11))
 
-    with open("input.txt") as f:
+    with open("test2.txt") as f:
         lines = f.readlines()
         lines = [line.strip() for line in lines]
 
@@ -107,6 +90,6 @@ if __name__ == "__main__":
         amout = int(amout)
         big_rope.move(direction, amout)
 
-    #big_rope.print_board()
+    big_rope.print_board()
     print("Visited", big_rope.get_number_of_visited())
 
